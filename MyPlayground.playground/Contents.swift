@@ -47,3 +47,16 @@ default:
 //    print("n.a")
     break
 }
+
+//NO.9
+// for 変数　in データの集合　{　処理　}
+//break
+//continue
+
+for i in 0...10 {
+    if i == 4 {
+//        break
+        continue
+    }
+    print(i)
+}
