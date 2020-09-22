@@ -77,3 +77,21 @@ if s != nil {
 //    print(value)
 //}
 print(s ?? "this is nil!")
+
+//NO.14
+//配列、タプル
+//集合
+//辞書
+
+//var sales: Dictionary<String, Int> = ["taguchi": 200, "fkoji": 300]
+var sales = ["taguchi": 200, "fkoji": 300] //型推論
+sales["fkoji"] = 500
+print(sales["taguchi"] ?? "n.a")
+sales["dotinstall"] = 400
+print(sales.count)
+print(sales.values)
+for(key,value) in sales {
+    print("\(key): \(value)")
+}
+//let SS = [String: Int]()
+//print(SS.isEmpty)
