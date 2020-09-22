@@ -60,3 +60,20 @@ for i in 0...10 {
     }
     print(i)
 }
+
+//NO.10
+//nil
+
+//let s :String = nil
+//let s: Optional<String> = nil
+var s: String? = nil
+if s != nil {
+        print(s!)//unwrap
+}
+//print(s ?? "this is nil")
+
+//optinai Biding
+//if let value = s {
+//    print(value)
+//}
+print(s ?? "this is nil!")
