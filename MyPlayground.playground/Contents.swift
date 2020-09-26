@@ -128,3 +128,20 @@ func sayHi(_ name: String = "tom") {
     print("hi \(name)")
 }
 sayHi()
+
+//NO.18
+// Class
+class User {
+    let name: String
+    var score: Int
+    init() {
+        self.name = "me!"
+        self.score = 23
+    }
+}
+//let user: User = User()
+let user = User() // instance
+print(user.name)
+print(user.score)
+user.score = 26
+print(user.score)
