@@ -196,3 +196,23 @@ init(_ name: String, _ score: Int) {
 //print(tom.score) // 50
 //tom.level = -3
 //print(tom.score) // 50
+
+//NO.21
+class Usersss {
+    let name: String
+    var score: Int {
+        willSet {
+            print("\(score) -> \(newValue)")
+        }
+        didSet {
+            print("Changed: \(score - oldValue)")
+        }
+    }
+    init(_ name: String, _ score: Int) {
+        self.name = name
+        self.score = score
+    }
+}
+let tomg = Usersss("tom", 21)
+tom.score = 78
+tom.score = 90
