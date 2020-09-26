@@ -95,3 +95,14 @@ for(key,value) in sales {
 }
 //let SS = [String: Int]()
 //print(SS.isEmpty)
+
+//NO.15
+// 関数
+//func sayHi() {
+//    print("hi")
+//}
+//sayHi()
+func sayHi() -> String {
+    return "hi"
+}
+print(sayHi())
