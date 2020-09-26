@@ -216,3 +216,22 @@ class Usersss {
 let tomg = Usersss("tom", 21)
 tom.score = 78
 tom.score = 90
+
+//NO.22
+class Userq {
+    let name: String
+    var score: Int
+    init(_ name: String, _ score: Int) {
+        self.name = name
+        self.score = score
+    }
+    //    func sayHi() {
+    //        print("hi \(name)")
+    //    }
+    //    func sayHi(msg: String) {
+    func sayHi(_ msg: String) {
+        print("\(msg) \(name)")
+    }
+}
+let tomH = Userq("tom", 23)
+tomH.sayHi("hola")
