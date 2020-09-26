@@ -106,3 +106,25 @@ func sayHi() -> String {
     return "hi"
 }
 print(sayHi())
+
+//NO.16
+// 引数
+//func sayHi(name: String) {
+//    print("hi \(name)")
+//}
+//sayHi(name: "tom")
+
+//func sayHi(from name: String) {
+//    print("hi \(name)")
+//}
+//sayHi(from: "tom")
+
+//func sayHi(_ name: String) {
+//    print("hi \(name)")
+//}
+//sayHi("tom")
+
+func sayHi(_ name: String = "tom") {
+    print("hi \(name)")
+}
+sayHi()
