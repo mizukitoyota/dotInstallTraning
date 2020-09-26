@@ -167,3 +167,32 @@ print(tom.score)
 let bob = User()
 print(bob.name)
 print(bob.score)
+//NO.20
+// Class
+class Userss {
+    let name: String
+    var score: Int
+//    var level: Int {
+//        get {
+//            return Int(score / 10)
+//        }
+//        set {
+//            if newValue >= 0 {
+//                score = newValue * 10
+//            }
+//        }
+//    }
+var level: Int {
+    return Int(score / 10)
+}
+init(_ name: String, _ score: Int) {
+    self.name = name
+    self.score = score
+    }
+}
+//let tom = User("tom", 23)
+//print(tom.level) // 2
+//tom.level = 5
+//print(tom.score) // 50
+//tom.level = -3
+//print(tom.score) // 50
