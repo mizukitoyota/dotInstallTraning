@@ -143,5 +143,27 @@ class User {
 let user = User() // instance
 print(user.name)
 print(user.score)
-user.score = 26
+user.score = 22
 print(user.score)
+//NO.19
+// Class
+class Users {
+    let name: String
+    var score: Int
+    //    init(name: String, score: Int) {
+    init(_ name: String, _ score: Int) {
+        self.name = name
+        self.score = score
+    }
+    init() {
+        self.name = "bob"
+        self.score = 15
+    }
+}
+//let tom = User(name: "tom", score: 23)
+let tom = Users("tom", 20)
+print(tom.name)
+print(tom.score)
+let bob = User()
+print(bob.name)
+print(bob.score)
