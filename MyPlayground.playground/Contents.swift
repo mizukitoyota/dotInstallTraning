@@ -270,44 +270,69 @@ import UIKit
 
 //NO.24
 //型プロパティ､型メソッドを使おう
-class User {//クラス
+//class User {//クラス
+//    let name: String
+//    var score: Int
+//    static var count = 0//静的変数、初期化一度のみ
+//    init(_ name: String, _ score: Int) {//指定イニシャライズ
+//        self.name = name//イニシャライズした値をプロパティに
+//        self.score = score//イニシャライズした値をプロパティに
+//        User.count += 1//インスタンス化するたびカウント
+//    }
+//    func sayHi() {
+//        print("hi \(name)")
+//    }
+//    class func getInfo() {//インスタンス化なしで使用可能、クラスメソッド、staticはオーバーライド不可
+//        print("\(count) instances")//インスタンスをカウント
+//    }
+//}
+//
+//class AdminUser: User {
+//    func sayHello() {
+//        print("hello \(name)")//
+//    }
+//    override func sayHi() {
+//        print("[admin] hi \(name)")
+//    }
+//    override class func getInfo() {//上記で使用したメソッドを上書き
+//        print("[admin] \(count) instances")//子クラスでのインスタンス化をカウント
+//    }
+//}
+//
+//User.getInfo()//ここで0、インスタンス化なしで呼び出し
+//let tom = User("tom", 23)//インスタンス化
+//User.getInfo()//ここで1
+//
+//AdminUser.getInfo()//ここで上記を引き継ぎ１
+//let bob = AdminUser("bob", 33)//インスタンス化
+//AdminUser.getInfo()//ここで２
+//AdminUser.getInfo()//これで2
+////print(bob.name)//インスタンス使用呼び出し
+////print(bob.score)//インスタンス使用呼び出し
+////bob.sayHi()//インスタンス使用呼び出し
+////bob.sayHello()//インスタンス使用呼び出し
+
+//NO.25
+//型キャストを使ってみよう
+class User {
     let name: String
-    var score: Int
-    static var count = 0//静的変数、初期化一度のみ
-    init(_ name: String, _ score: Int) {//指定イニシャライズ
-        self.name = name//イニシャライズした値をプロパティに
-        self.score = score//イニシャライズした値をプロパティに
-        User.count += 1//インスタンス化するたびカウント
-    }
-    func sayHi() {
-        print("hi \(name)")
-    }
-    class func getInfo() {//インスタンス化なしで使用可能、クラスメソッド、staticはオーバーライド不可
-        print("\(count) instances")//インスタンスをカウント
+    init(_ name: String) {//アンダースコアによりラベル不要、イニシャライズ
+        self.name = name//インスタンス化
     }
 }
+class AdminUser: User {}
 
-class AdminUser: User {
-    func sayHello() {
-        print("hello \(name)")//
-    }
-    override func sayHi() {
-        print("[admin] hi \(name)")
-    }
-    override class func getInfo() {//上記で使用したメソッドを上書き
-        print("[admin] \(count) instances")//子クラスでのインスタンス化をカウント
+let tom = User("tom")//インスタンス化
+let bob = AdminUser("bob")//インスタンス化
+
+let users: [User] = [tom, bob]//クラスを継承しているため別クラスでも一つのインスタンスにまとめることができる。
+
+for user in users {//ループ処理
+//    if let u = user as? AdminUser {//オプショナルバインディング、型キャスト、クラスの型AdminUserの時のみ
+//        print(u.name)//ボブのみプリント
+//    }
+    if user is AdminUser {//AdminUserがuserに型キャスト可能か
+        let u = user as! AdminUser//強制アンラップ
+        print(u.name)//ボブ
     }
 }
-
-User.getInfo()//ここで0、インスタンス化なしで呼び出し
-let tom = User("tom", 23)//インスタンス化
-User.getInfo()//ここで1
-
-AdminUser.getInfo()//ここで上記を引き継ぎ１
-let bob = AdminUser("bob", 33)//インスタンス化
-AdminUser.getInfo()//ここで２
-AdminUser.getInfo()//これで2
-//print(bob.name)//インスタンス使用呼び出し
-//print(bob.score)//インスタンス使用呼び出し
-//bob.sayHi()//インスタンス使用呼び出し
-//bob.sayHello()//インスタンス使用呼び出し
