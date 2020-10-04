@@ -240,30 +240,74 @@ import UIKit
 //クラスを継承してみよう
 // 継承
 // User  ->  AdminUser
-class User {//親クラス
-    let name: String//プロパティ
-    var score: Int//プロパティ
-    init(_ name: String, _ score: Int) {//指定イニシャライザ
+//class User {//親クラス
+//    let name: String//プロパティ
+//    var score: Int//プロパティ
+//    init(_ name: String, _ score: Int) {//指定イニシャライザ
+//        self.name = name//イニシャライズした値をプロパティに
+//        self.score = score//イニシャライズした値をプロパティに
+//    }
+//    final func sayHi() {//メソッド、継承、オーバーライド禁止（サブクラス）ここで上書き禁止にしたため、下記のoverrideではコンパイルエラーが発生
+//        print("hi \(name)")
+//    }
+//}
+//
+//class AdminUser: User {//子クラス、親クラス指定
+//    func sayHello() {//メソッド追加
+//        print("hello \(name)")
+//    }
+//    override func sayHi() {//親クラスメソッド上書き、上記のfinalにて上書き禁止のためエラー発生
+//        print("[admin] hi \(name)")//[admin] hi bob
+//    }
+//}
+//
+//let tom = User("tom", 23)//インスタンス
+//let bob = AdminUser("bob", 33)//インスタンス
+//print(bob.name)//bob
+//print(bob.score)//33
+//bob.sayHi()//hi bob
+//bob.sayHello()//hello bob
+
+//NO.24
+//型プロパティ､型メソッドを使おう
+class User {//クラス
+    let name: String
+    var score: Int
+    static var count = 0//静的変数、初期化一度のみ
+    init(_ name: String, _ score: Int) {//指定イニシャライズ
         self.name = name//イニシャライズした値をプロパティに
         self.score = score//イニシャライズした値をプロパティに
+        User.count += 1//インスタンス化するたびカウント
     }
-    final func sayHi() {//メソッド、継承、オーバーライド禁止（サブクラス）ここで上書き禁止にしたため、下記のoverrideではコンパイルエラーが発生
+    func sayHi() {
         print("hi \(name)")
     }
-}
-
-class AdminUser: User {//子クラス、親クラス指定
-    func sayHello() {//メソッド追加
-        print("hello \(name)")
-    }
-    override func sayHi() {//親クラスメソッド上書き、上記のfinalにて上書き禁止のためエラー発生
-        print("[admin] hi \(name)")//[admin] hi bob
+    class func getInfo() {//インスタンス化なしで使用可能、クラスメソッド、staticはオーバーライド不可
+        print("\(count) instances")//インスタンスをカウント
     }
 }
 
-let tom = User("tom", 23)//インスタンス
-let bob = AdminUser("bob", 33)//インスタンス
-print(bob.name)//bob
-print(bob.score)//33
-bob.sayHi()//hi bob
-bob.sayHello()//hello bob
+class AdminUser: User {
+    func sayHello() {
+        print("hello \(name)")//
+    }
+    override func sayHi() {
+        print("[admin] hi \(name)")
+    }
+    override class func getInfo() {//上記で使用したメソッドを上書き
+        print("[admin] \(count) instances")//子クラスでのインスタンス化をカウント
+    }
+}
+
+User.getInfo()//ここで0、インスタンス化なしで呼び出し
+let tom = User("tom", 23)//インスタンス化
+User.getInfo()//ここで1
+
+AdminUser.getInfo()//ここで上記を引き継ぎ１
+let bob = AdminUser("bob", 33)//インスタンス化
+AdminUser.getInfo()//ここで２
+AdminUser.getInfo()//これで2
+//print(bob.name)//インスタンス使用呼び出し
+//print(bob.score)//インスタンス使用呼び出し
+//bob.sayHi()//インスタンス使用呼び出し
+//bob.sayHello()//インスタンス使用呼び出し
