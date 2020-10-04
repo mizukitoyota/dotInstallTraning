@@ -314,25 +314,51 @@ import UIKit
 
 //NO.25
 //型キャストを使ってみよう
-class User {
+//class User {
+//    let name: String
+//    init(_ name: String) {//アンダースコアによりラベル不要、イニシャライズ
+//        self.name = name//インスタンス化
+//    }
+//}
+//class AdminUser: User {}
+//
+//let tom = User("tom")//インスタンス化
+//let bob = AdminUser("bob")//インスタンス化
+//
+//let users: [User] = [tom, bob]//クラスを継承しているため別クラスでも一つのインスタンスにまとめることができる。
+//
+//for user in users {//ループ処理
+////    if let u = user as? AdminUser {//オプショナルバインディング、型キャスト、クラスの型AdminUserの時のみ
+////        print(u.name)//ボブのみプリント
+////    }
+//    if user is AdminUser {//AdminUserがuserに型キャスト可能か
+//        let u = user as! AdminUser//強制アンラップ
+//        print(u.name)//ボブ
+//    }
+//}
+
+//NO.26
+//プロトコルを適合させてみよう
+protocol Printable {//プロトコル（仕様書）
+    var type: String { get }//読み込み専用プロパティ
+    var count: Int { get set }//読み込み、代入可能プロパティ
+    func printout()//メソッド指定
+}
+
+class User: Printable {//Printableを適合したクラス
+    let type = "Laser"//初期値
+    var count = 0//初期値
     let name: String
-    init(_ name: String) {//アンダースコアによりラベル不要、イニシャライズ
-        self.name = name//インスタンス化
+    init(_ name: String) {//イニシャライズ
+        self.name = name//プロパティ
+    }
+    func printout() {//メソッド指定使用
+        count += 1//カウント１追加
+        print("\(type): \(count)")//Laser　＋　プリントした回数
     }
 }
-class AdminUser: User {}
 
 let tom = User("tom")//インスタンス化
-let bob = AdminUser("bob")//インスタンス化
-
-let users: [User] = [tom, bob]//クラスを継承しているため別クラスでも一つのインスタンスにまとめることができる。
-
-for user in users {//ループ処理
-//    if let u = user as? AdminUser {//オプショナルバインディング、型キャスト、クラスの型AdminUserの時のみ
-//        print(u.name)//ボブのみプリント
-//    }
-    if user is AdminUser {//AdminUserがuserに型キャスト可能か
-        let u = user as! AdminUser//強制アンラップ
-        print(u.name)//ボブ
-    }
-}
+tom.printout()//１、
+tom.printout()//２
+tom.printout()//３
