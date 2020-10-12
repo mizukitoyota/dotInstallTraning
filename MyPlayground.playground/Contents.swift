@@ -563,12 +563,23 @@ import UIKit
 //user.name = "him"//プロパティ
 //let s = user.name.uppercased()//大文字表示
 //print(s)//HIM
-class User {
-    var name: String? = ""//オプショナル型
-}
-let user: User?//オプショナル型宣言の？
-user = User()//nil
-user?.name = "him//"
-if let s = user?.name?.uppercased() {//nilならnil,オプショナル型ならバインディング（？）で下記のように
-    print(s)//HIM//
-}
+//class User {
+//    var name: String? = ""//オプショナル型
+//}
+//let user: User?//オプショナル型宣言の？
+//user = User()//nil
+//user?.name = "him//"
+//if let s = user?.name?.uppercased() {//nilならnil,オプショナル型ならバインディング（？）で下記のように
+//    print(s)//HIM//
+//}
+
+//NO.36
+//暗黙的アンラップオプショナル型を使おう
+// Implicitly Unwrapped Optional//Optional型だが、アンラップがいらない型
+//var msg: String?//オプショナル型
+var msg: String! = "hello"
+msg = "hello"//値設置
+//if msg != nil {//nilでない場合
+//    print(msg!)//強制アンラップ
+//}
+print(msg)//hello、値が必ず入っているため強制アンラップ可能
