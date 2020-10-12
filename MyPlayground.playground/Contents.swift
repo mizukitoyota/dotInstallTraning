@@ -566,9 +566,9 @@ import UIKit
 class User {
     var name: String? = ""//オプショナル型
 }
-let user: User?//オプショナル型
+let user: User?//オプショナル型宣言の？
 user = User()//nil
 user?.name = "him//"
-if let s = user?.name?.uppercased() {//nilならnil,オプショナル型ならバインディングで下記のように
+if let s = user?.name?.uppercased() {//nilならnil,オプショナル型ならバインディング（？）で下記のように
     print(s)//HIM//
 }
