@@ -474,19 +474,47 @@ import UIKit
 //NO.32
 //サブスクリプトを使ってみよう
 // subscript//
-class Team {
-    var members = ["taguchi", "fkoji", "dotinstall"]//インデックス作成
-    subscript(index: Int) -> String {//サブスクリプト作成、返り値String
-        get {//参照
-            return members[index]//取得処理、membersのindex番
-        }
-        set {//更新
-            members.insert(newValue, at: index)//設定、index番にnewValue
-        }
+//class Team {
+//    var members = ["taguchi", "fkoji", "dotinstall"]//インデックス作成
+//    subscript(index: Int) -> String {//サブスクリプト作成、返り値String
+//        get {//参照
+//            return members[index]//取得処理、membersのindex番
+//        }
+//        set {//更新
+//            members.insert(newValue, at: index)//設定、index番にnewValue
+//        }
+//    }
+//}
+//var giants = Team()//インスタンス作成
+////giants[0] = "taguchi"//インデックス
+//print(giants[1]) // fkoji,二つ目
+//giants[3] = "tanaka"//追加
+//print(giants[3]) // tanaka、追加分
+
+//NO.33
+//guardを活用してみよう
+// guard//非正常処理をわかりやすく
+//func sayHi(_ msg: String?) {//関数、引数、オプショナル型
+//    if let s = msg {//オプショナルバインディング
+//        print(s)//NilではないならSを表示
+//    } else {
+//        print("value not set!")//Nilなら前述を宣言
+//    }
+//}
+// early return, early exit//早期退出
+//func sayHi(_ msg: String?) {//オプショナル型
+//    if msg == nil {
+//        print("value not set!")//Nilなら前述を宣言
+//        return//終わり
+//    }
+//    print(msg!)//強制アンラップ
+//}
+func sayHi(_ msg: String?) {//オプショナル型
+    guard let s = msg else {//オプショナルバインディング、msgがNIlでないならSに代入
+        print("value not set!")//NIlならこちら
+        return
     }
+    print(s)//アンラップされた値が使える
 }
-var giants = Team()//インスタンス作成
-//giants[0] = "taguchi"//インデックス
-print(giants[1]) // fkoji,二つ目
-giants[3] = "tanaka"//追加
-print(giants[3]) // tanaka、追加分
+sayHi(nil)//value not set!
+sayHi("hello")//hello
