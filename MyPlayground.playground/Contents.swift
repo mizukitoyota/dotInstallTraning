@@ -509,12 +509,44 @@ import UIKit
 //    }
 //    print(msg!)//強制アンラップ
 //}
-func sayHi(_ msg: String?) {//オプショナル型
-    guard let s = msg else {//オプショナルバインディング、msgがNIlでないならSに代入
-        print("value not set!")//NIlならこちら
-        return
-    }
-    print(s)//アンラップされた値が使える
+//func sayHi(_ msg: String?) {//オプショナル型
+//    guard let s = msg else {//オプショナルバインディング、msgがNIlでないならSに代入
+//        print("value not set!")//NIlならこちら
+//        return
+//    }
+//    print(s)//アンラップされた値が使える
+//}
+//sayHi(nil)//value not set!
+//sayHi("hello")//hello
+
+//NO.34
+//例外処理をしてみよう
+enum LoginError: Error {//列挙型、Errorプロトコルと適合、例外作成
+    case emptyName
+    case shortName
 }
-sayHi(nil)//value not set!
-sayHi("hello")//hello
+class User {
+    let name: String
+    init(_ name: String) {//イニシャライズ
+        self.name = name//プロパティ
+    }
+    func login() throws {//ログインメソッド、例外処理の場合throws
+        guard name != "" else {//nameが空じゃないならそのまま、
+            throw LoginError.emptyName//空ならemptyNameを投げる
+        }
+        guard name.count > 5 else {//文字数が５より大きいならそのまま
+            throw LoginError.shortName//５以下ならshortNameを投げる
+        }
+        print("login success")//うまくいけばログイン
+    }
+}
+//let tom = User("tom")//
+//let tom = User("takahashi")
+let tom = User("")//please enter your name
+do {//エラー出る可能性のあるメソッド呼び出し
+    try tom.login()//メソッド呼び出し
+} catch LoginError.emptyName {//エラーの際の処理
+    print("please enter your name")
+} catch LoginError.shortName {//エラーの際の処理
+    print("too short")
+}
