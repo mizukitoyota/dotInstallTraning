@@ -521,32 +521,54 @@ import UIKit
 
 //NO.34
 //例外処理をしてみよう
-enum LoginError: Error {//列挙型、Errorプロトコルと適合、例外作成
-    case emptyName
-    case shortName
-}
+//enum LoginError: Error {//列挙型、Errorプロトコルと適合、例外作成
+//    case emptyName
+//    case shortName
+//}
+//class User {
+//    let name: String
+//    init(_ name: String) {//イニシャライズ
+//        self.name = name//プロパティ
+//    }
+//    func login() throws {//ログインメソッド、例外処理の場合throws
+//        guard name != "" else {//nameが空じゃないならそのまま、
+//            throw LoginError.emptyName//空ならemptyNameを投げる
+//        }
+//        guard name.count > 5 else {//文字数が５より大きいならそのまま
+//            throw LoginError.shortName//５以下ならshortNameを投げる
+//        }
+//        print("login success")//うまくいけばログイン
+//    }
+//}
+////let tom = User("tom")//
+////let tom = User("takahashi")
+//let tom = User("")//please enter your name
+//do {//エラー出る可能性のあるメソッド呼び出し
+//    try tom.login()//メソッド呼び出し
+//} catch LoginError.emptyName {//エラーの際の処理
+//    print("please enter your name")
+//} catch LoginError.shortName {//エラーの際の処理
+//    print("too short")
+//}
+
+//NO.35
+//Optional Chainingを使ってみよう
+// Optional Chaining//「?」を記述してメソッドやプロパティにアクセス
+//class User {
+//    var name: String = ""
+//}
+//
+//let user: User
+//user = User()//インスタンス
+//user.name = "him"//プロパティ
+//let s = user.name.uppercased()//大文字表示
+//print(s)//HIM
 class User {
-    let name: String
-    init(_ name: String) {//イニシャライズ
-        self.name = name//プロパティ
-    }
-    func login() throws {//ログインメソッド、例外処理の場合throws
-        guard name != "" else {//nameが空じゃないならそのまま、
-            throw LoginError.emptyName//空ならemptyNameを投げる
-        }
-        guard name.count > 5 else {//文字数が５より大きいならそのまま
-            throw LoginError.shortName//５以下ならshortNameを投げる
-        }
-        print("login success")//うまくいけばログイン
-    }
+    var name: String? = ""//オプショナル型
 }
-//let tom = User("tom")//
-//let tom = User("takahashi")
-let tom = User("")//please enter your name
-do {//エラー出る可能性のあるメソッド呼び出し
-    try tom.login()//メソッド呼び出し
-} catch LoginError.emptyName {//エラーの際の処理
-    print("please enter your name")
-} catch LoginError.shortName {//エラーの際の処理
-    print("too short")
+let user: User?//オプショナル型
+user = User()//nil
+user?.name = "him//"
+if let s = user?.name?.uppercased() {//nilならnil,オプショナル型ならバインディングで下記のように
+    print(s)//HIM//
 }
