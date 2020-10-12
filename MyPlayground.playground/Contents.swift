@@ -452,8 +452,21 @@ import UIKit
 //case .left:
 //    print("left")
 //}
-enum Direction: Int {//計算
-    case right = 1
-    case left = -1
+//enum Direction: Int {//計算
+//    case right = 1
+//    case left = -1
+//}
+//print(Direction.right.rawValue)//１、rightの値
+
+//NO.31
+//ジェネリクスで型を汎用化しよう
+// Generics//汎用化されたデータ型
+//func getThree(x: Int) {//整数を3回渡す、戻り値
+func getThree<T>(x: T) {//型を汎用化、これにより型の制限なし
+    print(x)//１回
+    print(x)//２回
+    print(x)//３回
 }
-print(Direction.right.rawValue)//１、rightの値
+//getThree(x: 5)//５が3つ
+getThree(x: "hello")//hello3つ
+getThree(x: 2.3)//2.3が３つ
