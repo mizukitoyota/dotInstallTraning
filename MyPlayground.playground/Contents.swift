@@ -421,18 +421,39 @@ import UIKit
 //構造体を使ってみよう,構造体,クラスとほぼ同機能,値型,継承ができない
 //extension, 拡張　protocol、仕様書　継承可能
 //class User {//参照型
-struct User {//構造体
-    var name: String//型指定
-    init(_ name: String) {//イニシャライズ
-        self.name = name//プロパティ
-    }
-    mutating func changeName() {//普通のメソッドでは不可、enum(列挙)と構造の時のみ使える
-        self.name = name.uppercased()//大文字化プロパティ
-    }
-}
+//struct User {//構造体
+//    var name: String//型指定
+//    init(_ name: String) {//イニシャライズ
+//        self.name = name//プロパティ
+//    }
+//    mutating func changeName() {//普通のメソッドでは不可、enum(列挙)と構造の時のみ使える
+//        self.name = name.uppercased()//大文字化プロパティ
+//    }
+//}
+//
+//var original = User("tom")//インスタンス代入
+//var copy = original // copy: originalの値,
+//original.name = "bob"
+//print(original.name) // bob,
+//print(copy.name) // tom,
 
-var original = User("tom")//インスタンス代入
-var copy = original // copy: originalの値,
-original.name = "bob"
-print(original.name) // bob,
-print(copy.name) // tom,
+//NO.30
+//列挙型を使ってみよう
+//enum Direction {//列挙型、方向を表す値をまとめ
+//    case right
+//    case left
+//}
+//var dir: Direction//Direction型指定、
+////dir = Direction.right//値割り当て
+//dir = .right//上記短縮//right出力
+//switch (dir) {//列挙型の値の漏れチェック
+//case .right:
+//    print("right")
+//case .left:
+//    print("left")
+//}
+enum Direction: Int {//計算
+    case right = 1
+    case left = -1
+}
+print(Direction.right.rawValue)//１、rightの値
