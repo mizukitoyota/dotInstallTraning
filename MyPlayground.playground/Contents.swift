@@ -462,11 +462,31 @@ import UIKit
 //ジェネリクスで型を汎用化しよう
 // Generics//汎用化されたデータ型
 //func getThree(x: Int) {//整数を3回渡す、戻り値
-func getThree<T>(x: T) {//型を汎用化、これにより型の制限なし
-    print(x)//１回
-    print(x)//２回
-    print(x)//３回
+//func getThree<T>(x: T) {//型を汎用化、これにより型の制限なし
+//    print(x)//１回
+//    print(x)//２回
+//    print(x)//３回
+//}
+////getThree(x: 5)//５が3つ
+//getThree(x: "hello")//hello3つ
+//getThree(x: 2.3)//2.3が３つ
+
+//NO.32
+//サブスクリプトを使ってみよう
+// subscript//
+class Team {
+    var members = ["taguchi", "fkoji", "dotinstall"]//インデックス作成
+    subscript(index: Int) -> String {//サブスクリプト作成、返り値String
+        get {//参照
+            return members[index]//取得処理、membersのindex番
+        }
+        set {//更新
+            members.insert(newValue, at: index)//設定、index番にnewValue
+        }
+    }
 }
-//getThree(x: 5)//５が3つ
-getThree(x: "hello")//hello3つ
-getThree(x: 2.3)//2.3が３つ
+var giants = Team()//インスタンス作成
+//giants[0] = "taguchi"//インデックス
+print(giants[1]) // fkoji,二つ目
+giants[3] = "tanaka"//追加
+print(giants[3]) // tanaka、追加分
