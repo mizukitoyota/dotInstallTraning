@@ -376,22 +376,63 @@ import UIKit
 //print(msg.characters.count)//５文字
 //print(msg.length)//５文字
 
-protocol Printable {//プロトコル（仕様書）
-    func printout()//メソッド指定
-}
+//protocol Printable {//プロトコル（仕様書）
+//    func printout()//メソッド指定
+//}
+//
+//extension Printable {//拡張
+//    func printout() {//下記の処理追加
+//        print("now printing...")
+//    }
+//}
+//
+//class User: Printable {//Printableを適合したクラス
+//    let name: String//型指定
+//    init(_ name: String) {//イニシャライズ
+//        self.name = name//プロパティ
+//    }
+//}
+//
+//let tom = User("tom")//インスタンス化
+//tom.printout()//now printing...//Userクラスに追加せずとも処理を追加できた
 
-extension Printable {//拡張
-    func printout() {//下記の処理追加
-        print("now printing...")
-    }
-}
+//NO.28
+//値型と参照型について理解しよう
+// Int, Double, Array .. -> 値型
+// Class -> 参照型
+//var original = 10//整数型、値型
+//var copy = original // originalの値そのもの（変数）
+//original = 20//上書き
+//print(original) // 20
+//print(copy) // 10
+//class User {//参照型
+//    var name: String//型指定
+//    init(_ name: String) {//イニシャライズ
+//        self.name = name//プロパティ
+//    }
+//}
+//var original = User("tom")//インスタンス代入
+//var copy = original // originalが格納されている場所(変数)
+//original.name = "bob"//
+//print(original.name) // "bob"
+//print(copy.name) // "bob"上記originalと同じ
 
-class User: Printable {//Printableを適合したクラス
-    let name: String//型指定
+//NO.29
+//構造体を使ってみよう,構造体,クラスとほぼ同機能,値型,継承ができない
+//extension, 拡張　protocol、仕様書　継承可能
+//class User {//参照型
+struct User {//構造体
+    var name: String//型指定
     init(_ name: String) {//イニシャライズ
         self.name = name//プロパティ
     }
+    mutating func changeName() {//普通のメソッドでは不可、enum(列挙)と構造の時のみ使える
+        self.name = name.uppercased()//大文字化プロパティ
+    }
 }
 
-let tom = User("tom")//インスタンス化
-tom.printout()//now printing...//Userクラスに追加せずとも処理を追加できた
+var original = User("tom")//インスタンス代入
+var copy = original // copy: originalの値,
+original.name = "bob"
+print(original.name) // bob,
+print(copy.name) // tom,
