@@ -339,26 +339,59 @@ import UIKit
 
 //NO.26
 //プロトコルを適合させてみよう
+//protocol Printable {//プロトコル（仕様書）
+//    var type: String { get }//読み込み専用プロパティ
+//    var count: Int { get set }//読み込み、代入可能プロパティ
+//    func printout()//メソッド指定
+//}
+//
+//class User: Printable {//Printableを適合したクラス
+//    let type = "Laser"//初期値
+//    var count = 0//初期値
+//    let name: String
+//    init(_ name: String) {//イニシャライズ
+//        self.name = name//プロパティ
+//    }
+//    func printout() {//メソッド指定使用
+//        count += 1//カウント１追加
+//        print("\(type): \(count)")//Laser　＋　プリントした回数
+//    }
+//}
+//
+//let tom = User("tom")//インスタンス化
+//tom.printout()//１、
+//tom.printout()//２
+//tom.printout()//３
+
+//NO.27
+//エクステンションで型を拡張しよう
+// extension
+//extension String {//既存の型(String)に追加
+//    var length: Int {//計算
+//        return self.characters.count//文字数計算
+//    }
+//}
+//
+//let msg = "hello"
+//print(msg.characters.count)//５文字
+//print(msg.length)//５文字
+
 protocol Printable {//プロトコル（仕様書）
-    var type: String { get }//読み込み専用プロパティ
-    var count: Int { get set }//読み込み、代入可能プロパティ
     func printout()//メソッド指定
 }
 
+extension Printable {//拡張
+    func printout() {//下記の処理追加
+        print("now printing...")
+    }
+}
+
 class User: Printable {//Printableを適合したクラス
-    let type = "Laser"//初期値
-    var count = 0//初期値
-    let name: String
+    let name: String//型指定
     init(_ name: String) {//イニシャライズ
         self.name = name//プロパティ
-    }
-    func printout() {//メソッド指定使用
-        count += 1//カウント１追加
-        print("\(type): \(count)")//Laser　＋　プリントした回数
     }
 }
 
 let tom = User("tom")//インスタンス化
-tom.printout()//１、
-tom.printout()//２
-tom.printout()//３
+tom.printout()//now printing...//Userクラスに追加せずとも処理を追加できた
